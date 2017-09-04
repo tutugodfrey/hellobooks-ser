@@ -10,6 +10,7 @@ app.use(logger('dev'));
 
 //Parse incoming request data
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 let welcome = "<h1>Hello world my server is up and runing can't you see</h1>";
 let hellobooks = "Welcome to hello-books";
@@ -19,6 +20,7 @@ let message = {
 		message: "Welcome to the beginning of nothingness."
 }
 
+require('./server/routes')(app);
 //setup a default catch-all route that send back a welcome message in json format.
 app.get('/welcome', (req, res) => res.status(200).send(
 	welcome

@@ -1,16 +1,19 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Borrowedbooks = sequelize.define('Borrowedbooks', {
-    {
-      userid: DataTypes.INTEGER,
+    
+      userid: {
+        type: DataTypes.INTEGER,
       allowNull:false,
     },
-    {
-    bookid: DataTypes.INTEGER,
+    
+    bookid: {
+      type: DataTypes.INTEGER,
     allowNull:false,
-  }
-  {
-      returned: DataTypes.BOOLEAN,
+  },
+  
+      returned: {
+        type: DataTypes.BOOLEAN,
       allowNull:false,
     }
   }, {

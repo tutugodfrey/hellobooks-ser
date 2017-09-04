@@ -1,36 +1,40 @@
 
 module.exports = (sequelize, DataTypes) => {
+
   const Books = sequelize.define('Books', {
-    {
-      author: DataTypes.STRING,
+    author: {
+      type: DataTypes.STRING,
       allowNull:false,
     },
-   {
-    booktitle: DataTypes.STRING,
+  
+    booktitle: {
+      type: DataTypes.STRING,
     allowNull:false,
   },
-   {
-    isbn: DataTypes.STRING,
+    isbn: {
+      type: DataTypes.STRING,
     allowNull:false,
   },
-  {
-    publisher: DataTypes.STRING,
-    allowNull:false,
-  }
-  {
-    publishdate: DataTypes.DATE,
+    publisher: {
+      type: DataTypes.STRING,
     allowNull:false,
   },
-  {
-    numberofpages: DataTypes.INTEGER,
+  
+    publishdate: {
+      type: DataTypes.DATE,
     allowNull:false,
   },
-  {  
-    quantity: DataTypes.INTEGER,
+  
+    numberofpages:{
+      type: DataTypes.INTEGER,
+    allowNull:false,
+  },
+    quantity:{
+      type: DataTypes.INTEGER,
     allowNull:true,
-  }
-  {
-    description: DataTypes.STRING,
+  },
+    description: {
+      type: DataTypes.STRING,
     allowNull:true,
   }
   }, {

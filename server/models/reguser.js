@@ -1,32 +1,39 @@
 
 module.exports = (sequelize, DataTypes) => {
-  const Reguser = sequelize.define('Regusers', {
-   { 
-    firstname: DataTypes.STRING,
-    allowNull:false,
+  const Regusers = sequelize.define('Regusers', {
+   
+    firstname: {
+      type: DataTypes.STRING,
+    allowNull: false,
    },
-    {lastname: DataTypes.STRING,
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    
+    email: {
+        type: DataTypes.STRING,
       allowNull:false,
     },
-    {
-      email: DataTypes.STRING,
+    
+    usertype: {
+        type: DataTypes.STRING,
       allowNull:false,
     },
-    {
-      usertype: DataTypes.STRING,
+    
+    username: {
+        type: DataTypes.STRING,
       allowNull:false,
     },
-    {
-      username: DataTypes.STRING,
+    
+    password: {
+        type: DataTypes.STRING,
       allowNull:false,
     },
-    {
-      password: DataTypes.STRING
-      allowNull:false,
-    },
-    {
-      userlevel: DataTypes.INTEGER,
-      allowNull:false,
+    
+    userlevel: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     }
   }, {
     classMethods: {
