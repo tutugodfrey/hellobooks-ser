@@ -11,16 +11,22 @@ module.exports = (app) => {
 		message: 'Welcome Hello-books',
 	})); 
     //controller actions for regusers
-	app.post('/api/regusers', reguserscontroller.create);
-	app.get('/api/regusers', reguserscontroller.list);
-	app.get('/api/regusers/:userid', reguserscontroller.retrieve);
+    app.post('/api/users/signup', reguserscontroller.signup);
+	app.post('/api/users/signin', reguserscontroller.signin);
+	app.get('/api/users', reguserscontroller.listusers);
+	app.get('/api/users/:userid', reguserscontroller.getuser);
+
 
 	//controller actions for books
-	app.post('/api/addbooks', bookscontroller.create);
-	app.get('/api/books', bookscontroller.list);
+	app.post('/api/books', bookscontroller.addbooks);
+	app.put('/api/books/:bookid', bookscontroller.editbook);
+	app.get('/api/books', bookscontroller.getbooks);
 
 	//controller actions for borrowing books
-	app.post('/api/borrowbook', borrowcontroller.create);
-	app.get('/api/borrowedbooks', borrowcontroller.list);
+	app.post('/api/users/:userid', borrowcontroller.borrowbook);
+	//app.post('/api/borrowbook', borrowcontroller.create);
+	app.get('/api/borrows', borrowcontroller.borrowedbooks);
+	app.put('/api/users/:userid', borrowcontroller.returnbook);
+	app.get('/api/users/:userid/books', borrowcontroller.pendingbooks);
 
 };
