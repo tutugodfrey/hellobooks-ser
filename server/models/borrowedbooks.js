@@ -4,17 +4,17 @@ module.exports = (sequelize, DataTypes) => {
     
       userid: {
         type: DataTypes.INTEGER,
-      allowNull:false,
+        allowNull:false,
     },
     
     bookid: {
       type: DataTypes.INTEGER,
-    allowNull:false,
+      allowNull:false,
   },
   
       returned: {
         type: DataTypes.BOOLEAN,
-      allowNull:false,
+        allowNull:false,
     }
   }, {
     classMethods: {

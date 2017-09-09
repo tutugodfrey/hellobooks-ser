@@ -33,9 +33,13 @@ module.exports = {
         allowNull:false,
       },
       userlevel: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.ENUM(gold, silver, platinum),
         allowNull:false,
       },
+      imageurl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      }
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

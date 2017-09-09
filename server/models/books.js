@@ -6,37 +6,42 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull:false,
     },
-  
     booktitle: {
       type: DataTypes.STRING,
-    allowNull:false,
-  },
+      allowNull:false,
+    },
     isbn: {
       type: DataTypes.STRING,
-    allowNull:false,
-  },
+      allowNull:false,
+    },
     publisher: {
       type: DataTypes.STRING,
-    allowNull:false,
-  },
-  
+      allowNull:false,
+    },
     publishdate: {
       type: DataTypes.DATE,
-    allowNull:false,
-  },
-  
+      allowNull:false,
+    },
     numberofpages:{
       type: DataTypes.INTEGER,
-    allowNull:false,
-  },
+      allowNull:false,
+    },
     quantity:{
       type: DataTypes.INTEGER,
-    allowNull:true,
-  },
+      allowNull:true,
+    },
+    imageurl:{
+      type: DataTypes.STRING,
+      allowNull:true,
+    },
     description: {
       type: DataTypes.STRING,
-    allowNull:true,
-  }
+      allowNull:true,
+    },
+    category:{
+      type: DataTypes.STRING,
+      allowNull:true,
+    },
   }, {
     classMethods: {
       associate: models => {

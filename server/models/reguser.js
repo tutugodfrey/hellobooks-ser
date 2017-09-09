@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
    
     firstname: {
       type: DataTypes.STRING,
-    allowNull: false,
+      allowNull: false,
    },
     lastname: {
       type: DataTypes.STRING,
@@ -13,26 +13,28 @@ module.exports = (sequelize, DataTypes) => {
     
     email: {
         type: DataTypes.STRING,
-      allowNull:false,
+        allowNull:false,
     },
     
     usertype: {
         type: DataTypes.STRING,
-      allowNull:false,
+        allowNull:false,
     },
-    
     username: {
         type: DataTypes.STRING,
-      allowNull:false,
+        allowNull:false,
     },
     
     password: {
         type: DataTypes.STRING,
-      allowNull:false,
+        allowNull:false,
     },
-    
     userlevel: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.ENUM(gold, silvel, platinum),
+        allowNull: false,
+    },
+    imageurl: {
+        type: DataTypes.STRING,
         allowNull: false,
     }
   }, {

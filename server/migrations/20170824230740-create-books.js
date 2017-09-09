@@ -29,8 +29,14 @@ module.exports = {
       quantity: {
         type: Sequelize.INTEGER
       },
+      imageurl: {
+        type: Sequelize.STRING,
+      }
       description: {
         type: Sequelize.STRING
+      },
+      category:{
+      type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
