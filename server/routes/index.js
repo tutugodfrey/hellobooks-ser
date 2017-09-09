@@ -15,12 +15,15 @@ module.exports = (app) => {
 	app.post('/api/users/signin', reguserscontroller.signin);
 	app.get('/api/users', reguserscontroller.listusers);
 	app.get('/api/users/:userid', reguserscontroller.getuser);
+	app.put('/api/users/:userid', reguserscontroller.updateinfo);
+	app.put('/api/users/:userid/change-password', reguserscontroller.changepw);
 
 
 	//controller actions for books
 	app.post('/api/books', bookscontroller.addbooks);
 	app.put('/api/books/:bookid', bookscontroller.editbook);
 	app.get('/api/books', bookscontroller.getbooks);
+	app.delete('/api/books/delete', bookscontroller.deletebook);
 
 	//controller actions for borrowing books
 	app.post('/api/users/:userid', borrowcontroller.borrowbook);

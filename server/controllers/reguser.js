@@ -56,4 +56,45 @@ module.exports = {
 		.then(user => res.status(200).send(user))
 		.catch(error => res.status(400).send(error));
 	},
+
+	updateinfo (req, res) {
+		return Regusers
+		.find({
+			where: {
+				id: req.params.userid,
+			},
+		})
+		.then(user => {
+			return user
+			.update({
+			firstname: req.body.firstname || user.firstname,
+			lastname: req.body.lastname || user.lastname,
+			email: req.body.email || user.email,
+			usertype: req.body.usertype || user.usertype,
+			username: req.body.username || user.username,
+			password: req.body.password || user.password,
+			userlevel: req.body.userlevel || user.userlevel,
+			})
+			.then(user => res.status(201).send(user))
+			.catch(error => res.status(201).send(error));
+		})
+		.catch(error => res.status(400).send(error));
+	},
+	changepw (req, res) {
+		return Regusers
+		.find({
+			where: {
+				id: req.params.userid,
+			}
+		})
+		.then(user => {
+			return user
+			.update({
+				password: req.body.password || user.password,
+			})
+			.then(user => res.status(201).send("Your password have been updated"))
+			.catch(error =>res.status(400).send(error));
+		})
+		.catch(error => res.status(400).send(error));
+	},
 };

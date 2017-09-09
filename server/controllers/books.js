@@ -36,14 +36,14 @@ module.exports = {
 
 		return book
 		.update({
-		booktitle: req.body.booktitle || Books.booktitle,
-		author: req.body.author || Books.author,
-		isbn: req.body.isbn || Books.isbn,
-		publisher: req.body.publisher || Books.publisher,
-		quantity: req.body.quantity || Books.quantity,
-		publishdate: req.body.publishdate || Books.publishdate,
-		numberofpages: req.body.numberofpages || Books.numberofpages,
-		description: req.body.description || Books.description,
+		booktitle: req.body.booktitle || book.booktitle,
+		author: req.body.author || book.author,
+		isbn: req.body.isbn || book.isbn,
+		publisher: req.body.publisher || book.publisher,
+		quantity: req.body.quantity || book.quantity,
+		publishdate: req.body.publishdate || book.publishdate,
+		numberofpages: req.body.numberofpages || book.numberofpages,
+		description: req.body.description || book.description,
 	})
 	.then(books => res.status(201).send(books))
 	.catch(error => res.status(400).send(error));
@@ -60,4 +60,15 @@ module.exports = {
 		.then(books => res.status(200).send(books))
 		.catch(error => res.status(400).send(error));
 	},
+
+	deletebook(req, res) {
+		return Books
+		.destroy({
+			where: {
+				id: req.body.bookid,
+			},
+		})
+		.then(book => res.status(201).send(`Book with id: ${req.body.bookid} has been remove from the record`) )
+		.catch(error => res.status(400).send(error));
+	}
 }
