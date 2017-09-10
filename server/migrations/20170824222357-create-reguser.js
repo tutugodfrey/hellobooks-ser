@@ -21,25 +21,26 @@ module.exports = {
         allowNull:false,
       },
       usertype: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM("admin", "regular"),
         allowNull:false,
       },
       username: {
         type: Sequelize.STRING,
         allowNull:false,
+        unique: true,
       },
       password: {
         type: Sequelize.STRING,
         allowNull:false,
       },
       userlevel: {
-        type: Sequelize.ENUM(gold, silver, platinum),
+        type: Sequelize.ENUM("gold", "silver", "platinum"),
         allowNull:false,
       },
       imageurl: {
         type: Sequelize.STRING,
-        allowNull: false,
-      }
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

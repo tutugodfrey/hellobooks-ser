@@ -10,7 +10,7 @@ module.exports = {
       },
       userid: {
         type: Sequelize.INTEGER,
-        allowNull:false
+        allowNull:false,
       },
       bookid: {
         type: Sequelize.INTEGER,
@@ -18,7 +18,7 @@ module.exports = {
       },
       returned: {
         type: Sequelize.BOOLEAN,
-        allowNull:false
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
@@ -40,7 +40,7 @@ module.exports = {
       },
     });
   },
-  down: (queryInterface /*, Sequelize */) => {
+  down: (queryInterface, Sequelize) => {
     queryInterface.dropTable('Borrowedbooks');
   }
 };

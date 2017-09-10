@@ -15,10 +15,9 @@ module.exports = {
 					message: "Authentication fail: this user does not exist"
 				});
 			}
-
 			return Books
 			.findById(req.body.bookid)
-			.then(book =>{
+			.then(book => {
 				if(!book){
 					return res.status(400).send({
 						message: "This book does not exist in our database"
@@ -27,33 +26,44 @@ module.exports = {
 					return res.status(400).send({
 						message: "All copy of this book has been borrowed out <br /> please check back later"
 					})
-				}
+				}   //end if
 
-			return Borrowbooks
-			.create({
-			userid: req.params.userid,
-			bookid: req.body.bookid,
-			returned: false,
-			})
-			//.then(borrowbook  => res.status(201).send(borrowbook))
-			.then(borrowbook  => {
-				if (borrowbook){
-					return book
-					.update({
-						quantity: book.quantity - 1,
-					})
-					//.then(quantity => res.status(201).send(quantity))
-					.catch(error => res.status(400).send(error));
-				}
+				return Borrowbooks
+				.find({
+					where: {
+					  userid: req.params.userid,
+			          bookid: req.body.bookid,
+			          returned: false,
+				    }
+				})
+				.then(borrowedbook => {
+					if(borrowedbook){
+					  res.status(201).send("this book is already borrowed to you")
+				    } else {
+				    	return Borrowbooks
+					   .create({
+			              userid: req.params.userid,
+			              bookid: req.body.bookid,
+			              returned: false,
+			            })
+					   .then(borrowedbook => {
+					   	if(borrowedbook) {
+					   		return book
+					        .update({
+						        quantity: book.quantity - 1,
+					        })
+					        .then(quantity => res.status(201).send(quantity))
+					        .catch(error => res.status(400).send(error));
+					   	}
+					   })
+					   .catch(error => res.status(400).send(error));
+				    }
+				})
+				.catch(error => res.status(400).send(error));
 			})
 			.catch(error => res.status(400).send(error));
-
-
-			})
-
 		})
 		.catch(error => res.status(400).send(error));
-
 		},
 
     pendingbooks(req, res) {
@@ -74,6 +84,7 @@ module.exports = {
 		.find({
 			where: {
 				userid: req.params.userid,
+				bookid: req.body.bookid,
 				returned: false,
 			},
 		})
@@ -82,10 +93,37 @@ module.exports = {
 			.update({
 				returned: true,
 			})
-			.then(book => res.status(201).send(book))
+			.then(book => {
+				//return the quantity of book +1
+				return Books
+				.findById(req.body.bookid)
+				.then(returnedbook => {
+					if(returnedbook){
+						return returnedbook
+						.update({
+							quantity: returnedbook.quantity + 1,
+							})
+						.then(returned => res.status(201).send(returned))
+						.catch(error => res.status(400).send(error));
+					}
+				})
+				.catch(error => res.status(400).send(error));
+			})
 			.catch(error => res.status(400).send(error));
 		})
 
+		.catch(error => res.status(400).send(error));
+	},
+
+	borrowhistory(req, res) {
+		return Borrowbooks
+		.findAll({
+			where: {
+				userid: req.params.userid,
+				//returned: false || true,
+			}
+		})
+		.then(books => res.status(200).send(books))
 		.catch(error => res.status(400).send(error));
 	},
 

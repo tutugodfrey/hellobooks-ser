@@ -29,7 +29,8 @@ module.exports = (app) => {
 	app.post('/api/users/:userid', borrowcontroller.borrowbook);
 	//app.post('/api/borrowbook', borrowcontroller.create);
 	app.get('/api/borrows', borrowcontroller.borrowedbooks);
-	app.put('/api/users/:userid', borrowcontroller.returnbook);
+	app.put('/api/users/:userid/returnbook', borrowcontroller.returnbook);
 	app.get('/api/users/:userid/books', borrowcontroller.pendingbooks);
+	app.get('/api/users/:userid/books/history', borrowcontroller.borrowhistory);
 
 };

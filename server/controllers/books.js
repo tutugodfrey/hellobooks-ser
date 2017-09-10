@@ -14,6 +14,8 @@ module.exports = {
 		publishdate: req.body.publishdate,
 		numberofpages: req.body.numberofpages,
 		description: req.body.description,
+		imageurl: req.body.imageurl,
+		category: req.body.category,
 	})
 	.then(books => res.status(201).send(books))
 	.catch(error => res.status(400).send(error));
@@ -21,10 +23,11 @@ module.exports = {
 
 //editing books
 	editbook (req, res) {
+		if(req.body.usertype === "admin"){
 		return Books
 		.find({
 			where: {
-				id: req.params.bookid
+				id: req.params.bookid,
 			},
 			})
 		.then( book => {
@@ -44,12 +47,17 @@ module.exports = {
 		publishdate: req.body.publishdate || book.publishdate,
 		numberofpages: req.body.numberofpages || book.numberofpages,
 		description: req.body.description || book.description,
+		imageurl: req.body.imageurl || book.imageurl,
+		category: req.body.category || book.category,
 	})
 	.then(books => res.status(201).send(books))
 	.catch(error => res.status(400).send(error));
 	})
 
 	.catch(error => res.status(400).send(error));
+} else {
+	res.status(201).send("You require admin privilege to perform this action");
+}
 	},
 
 

@@ -6,7 +6,15 @@ const Books = require('../models').Books;
 module.exports = {
 	signup(req, res) {
 		return Regusers
-		.create({
+		.find({
+			where: {
+				username: req.body.username,
+			}
+		})
+		.then(user => {
+			if(!user){
+			return Regusers
+			.create({
 			firstname: req.body.firstname,
 			lastname: req.body.lastname,
 			email: req.body.email,
@@ -14,8 +22,15 @@ module.exports = {
 			username: req.body.username,
 			password: req.body.password,
 			userlevel: req.body.userlevel,
+			imageurl: req.body.imageurl,
 		})
 		.then(signup => res.status(201).send(signup))
+		.catch(error => res.status(400).send(error));
+
+			} else {
+				res.status(201).send(`A user with this ${req.body.username} already exist`)
+			}
+		})
 		.catch(error => res.status(400).send(error));
 	},
 

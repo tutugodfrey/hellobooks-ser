@@ -10,32 +10,30 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    
     email: {
         type: DataTypes.STRING,
         allowNull:false,
     },
-    
     usertype: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM("admin", "regular"),
         allowNull:false,
     },
     username: {
         type: DataTypes.STRING,
         allowNull:false,
+        unique: true,
     },
-    
     password: {
         type: DataTypes.STRING,
-        allowNull:false,
+        allowNull: false,
     },
     userlevel: {
-        type: DataTypes.ENUM(gold, silvel, platinum),
+        type: DataTypes.ENUM("gold", "silver", "platinum"),
         allowNull: false,
     },
     imageurl: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     }
   }, {
     classMethods: {

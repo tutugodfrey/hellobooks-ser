@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     bookid: {
       type: DataTypes.INTEGER,
       allowNull:false,
-  },
+   },
   
       returned: {
         type: DataTypes.BOOLEAN,
-        allowNull:false,
+        defaultValue: false,
     }
   }, {
     classMethods: {

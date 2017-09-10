@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     isbn: {
       type: DataTypes.STRING,
       allowNull:false,
+      unique: true,
     },
     publisher: {
       type: DataTypes.STRING,
@@ -22,15 +23,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull:false,
     },
-    numberofpages:{
+    numberofpages: {
       type: DataTypes.INTEGER,
       allowNull:false,
     },
-    quantity:{
+    quantity: {
       type: DataTypes.INTEGER,
       allowNull:true,
     },
-    imageurl:{
+    imageurl: {
       type: DataTypes.STRING,
       allowNull:true,
     },
@@ -38,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull:true,
     },
-    category:{
+    category: {
       type: DataTypes.STRING,
       allowNull:true,
     },
