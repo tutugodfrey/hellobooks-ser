@@ -4,11 +4,18 @@ const Regusers = require('../models').Regusers;
 const Books = require('../models').Books;
 
 module.exports = {
+	signu(req, res) {
+
+		return req;
+	},
 	signup(req, res) {
+		console.log(res);
+		console.log(req);
 		return Regusers
 		.find({
 			where: {
-				username: req.body.username,
+				//username: req.body.username,
+				username: "tutug",
 			}
 		})
 		.then(user => {
@@ -66,9 +73,14 @@ module.exports = {
 	},
 
 	getuser (req, res) {
+		//return req;
+		//console.log(res);
+		//console.log(req);
 		return Regusers
 		.findById(req.params.userid)
-		.then(user => res.status(200).send(user))
+		.then(user => res.status(200).send(
+			user
+		))
 		.catch(error => res.status(400).send(error));
 	},
 
