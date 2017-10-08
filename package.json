@@ -28,6 +28,7 @@
     "eslint": "^4.6.1",
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
+    "isparta": "^4.0.0",
     "istanbul": "^0.4.5",
     "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.11.0",
