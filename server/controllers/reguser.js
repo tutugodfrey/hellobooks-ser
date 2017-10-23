@@ -14,8 +14,8 @@ module.exports = {
 		return Regusers
 		.find({
 			where: {
-				//username: req.body.username,
-				username: "tutug",
+				username: req.body.username,
+			
 			}
 		})
 		.then(user => {

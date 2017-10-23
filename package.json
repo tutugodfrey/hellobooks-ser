@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon ./bin/www",
-    "test": "mocha test/test.js"
+    "test": "mocha test/test.js",
+    "test-travis": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*",
+    "lint": "eslint *.js"
   },
   "keywords": [
     "js"
@@ -24,6 +26,9 @@
   },
   "devDependencies": {
     "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "chai-http": "^3.0.0",
     "coveralls": "^2.13.1",
     "eslint": "^4.6.1",
     "eslint-config-airbnb-base": "^12.0.0",
